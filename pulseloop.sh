@@ -20,11 +20,11 @@ while true
 do
   # loop infinitely
     
-    str=$(./busybox netstat -anp |grep web1.js | grep ESTABLISHED |./busybox wc -l)
-    echo $str
+    str=$(./busybox netstat -anp |grep web1.js | grep ESTABLISHED | grep -v :2052 |./busybox wc -l)
+    #echo $str
     #str1="$(echo $str | cut -d' ' -f1)"
     #echo $str1
-    if [ $str -gt 1 ]
+    if [ $str -gt 0 ]
     then
 	#echo settozero 
         if [ $count -gt 30 ]
