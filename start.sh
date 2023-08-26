@@ -13,9 +13,9 @@ touch /tmp/www/WORK_IN_PROGRESS
 filename=$(date +%Y-%m-%d-%H-%M-%S)
 echo $filename > /tmp/logname
 
-stdbuf -oL -eL python -m http.server -d /tmp/www
+python -u -m http.server -d /tmp/www
 
-#stdbuf -oL -eL python -m http.server -d /tmp/www >>/tmp/$filename 2>&1 &
+#python -u -m http.server -d /tmp/www >>/tmp/$filename 2>&1 &
 
 ./socat open:/tmp/logname TCP-LISTEN:10000,fork,reuseaddr,bind=127.0.0.1 &
 ./socat open:/tmp/$filename TCP-LISTEN:10001,fork,reuseaddr,bind=127.0.0.1 &
