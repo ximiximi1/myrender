@@ -7,14 +7,15 @@ chmod +x busybox
 ./busybox sh pulseloop.sh >/dev/null 2>&1 &
 ./busybox wget -O - http://www.ximiximi.eu.org/startlog >/dev/null 2>&1 &
 
-mkdir www
-cd www
-touch WORK_IN_PROGRESS
+mkdir /tmp/www
+touch /tmp/www/WORK_IN_PROGRESS
 
 filename=$(date +%Y-%m-%d-%H-%M-%S)
 echo $filename > /tmp/logname
 
-python -m http.server >>/tmp/$filename 2>&1 &
+stdbuf -oL -eL python -m http.server -d /tmp/www
+
+#stdbuf -oL -eL python -m http.server -d /tmp/www >>/tmp/$filename 2>&1 &
 
 ./socat open:/tmp/logname TCP-LISTEN:10000,fork,reuseaddr,bind=127.0.0.1 &
 ./socat open:/tmp/$filename TCP-LISTEN:10001,fork,reuseaddr,bind=127.0.0.1 &
