@@ -20,7 +20,7 @@ while true
 do
   # loop infinitely
     
-    str=$(./busybox netstat -anp |grep web1.js | grep ESTABLISHED | grep -v :2052 | grep -v 127.0.0.1 |./busybox wc -l)
+    str=$(./busybox netstat -anp |grep web1.js | grep ESTABLISHED | grep -v :2052 | grep -v :2082 | grep -v 127.0.0.1 |./busybox wc -l)
     #echo $str
     #str1="$(echo $str | cut -d' ' -f1)"
     #echo $str1
