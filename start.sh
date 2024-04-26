@@ -2,7 +2,7 @@
 chmod +x socat
 chmod +x busybox
 ./busybox tar zxf node_modules.tar.gz
-./socat TCP-LISTEN:9999,fork,reuseaddr,bind=127.0.0.1  EXEC:"bash -li",stderr,pty,setsid,ctty 2>&1 &
+#./socat TCP-LISTEN:9999,fork,reuseaddr,bind=127.0.0.1  EXEC:"bash -li",stderr,pty,setsid,ctty 2>&1 &
 
 node web2.js
 
